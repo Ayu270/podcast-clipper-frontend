@@ -259,27 +259,36 @@ export const processVideo = inngest.createFunction(
           });
         });
 
-        await step.run("call-modal-endpoint", async () => {
-          const response = await fetch(
-            env.PROCESS_VIDEO_ENDPOINT,
-            {
-              method: "POST",
-              body: JSON.stringify({
-                s3_key: s3Key,
-              }),
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${env.PROCESS_VIDEO_ENDPOINT_AUTH}`,
-              },
-            },
-          );
-
-          if (!response.ok) {
-            throw new Error(
-              `Video processing endpoint failed: ${response.status} ${response.statusText}`,
-            );
-          }
+        await step.fetch(env.PROCESS_VIDEO_ENDPOINT, {
+          method: "POST",
+          body: JSON.stringify({ s3_key: s3Key }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${env.PROCESS_VIDEO_ENDPOINT_AUTH}`,
+          },
         });
+
+        // await step.run("call-modal-endpoint", async () => {
+        //   const response = await fetch(
+        //     env.PROCESS_VIDEO_ENDPOINT,
+        //     {
+        //       method: "POST",
+        //       body: JSON.stringify({
+        //         s3_key: s3Key,
+        //       }),
+        //       headers: {
+        //         "Content-Type": "application/json",
+        //         Authorization: `Bearer ${env.PROCESS_VIDEO_ENDPOINT_AUTH}`,
+        //       },
+        //     },
+        //   );
+
+        //   if (!response.ok) {
+        //     throw new Error(
+        //       `Video processing endpoint failed: ${response.status} ${response.statusText}`,
+        //     );
+        //   }
+        // });
 
         const clipsResult = await step.run(
           "create-clips-in-db",
