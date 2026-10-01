@@ -52,13 +52,19 @@ export function SignupForm({
         redirect: false,
       });
 
+      // if (signUpResult?.error) {
+      //   setError(
+      //     "Account created but couldn't sign in automatically. Please try again.",
+      //   );
+      // } else {
+      //   router.push("/dashboard");
+      // }
       if (signUpResult?.error) {
-        setError(
-          "Account created but couldn't sign in automatically. Please try again.",
-        );
-      } else {
-        router.push("/dashboard");
+         setError("Invalid email or password.");
+      return;
       }
+
+      window.location.href = "/dashboard";
     } catch (error) {
       setError("An unexpected error occured");
     } finally {

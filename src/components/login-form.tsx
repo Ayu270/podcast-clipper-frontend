@@ -24,7 +24,7 @@ import {
 } from "~/schemas/auth";
 import { signUp } from "~/actions/auth";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+//import { useRouter } from "next/navigation";
 
 export function LoginForm({
   className,
@@ -32,7 +32,7 @@ export function LoginForm({
 }: React.ComponentPropsWithoutRef<"div">) {
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const router = useRouter();
+  //const router = useRouter();
 
   const {
     register,
@@ -51,11 +51,17 @@ export function LoginForm({
         redirect: false,
       });
 
+      // if (signInResult?.error) {
+      //   setError("Invalid email or password.");
+      // } else {
+      //   router.push("/dashboard");
+      // }
       if (signInResult?.error) {
-        setError("Invalid email or password.");
-      } else {
-        router.push("/dashboard");
+         setError("Invalid email or password.");
+      return;
       }
+
+      window.location.href = "/dashboard";
     } catch (error) {
       setError("An unexpected error occured");
     } finally {
