@@ -116,14 +116,20 @@ export default function BillingPage() {
                  <ArrowLeftIcon className="size-4" />
               </Link>
              </Button> */}
-             <Link href="/dashboard">
+             <Link
+               href="/dashboard"
+                 className="absolute top-0 left-0 inline-flex h-10 w-10 items-center justify-center rounded-md border bg-background text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+             >
+                <ArrowLeftIcon className="size-4" />
+            </Link>
+             {/* <Link href="/dashboard">
                <Button
                   variant="outline"
                   size="icon"
                >
                   <ArrowLeftIcon className="size-4" />
               </Button>
-            </Link>
+            </Link> */}
              <div className="space-y-2 text-center">
                  <h1 className="text-2xl font-bold tracking-tight sm:text-4xl">
                    Buy Credits

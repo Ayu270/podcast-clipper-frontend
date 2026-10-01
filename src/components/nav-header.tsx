@@ -121,7 +121,7 @@ const NavHeader = ({ credits, email }: { credits: number; email: string }) => {
           </div>
         </Link> */}
         <Link
-            href="/"
+            href="/dashboard"
             className="text-xl font-semibold tracking-tight"
           >
             podcast

@@ -19,7 +19,7 @@ import Link from "next/link";
 import { signupSchema, type SignupFormValues } from "~/schemas/auth";
 import { signUp } from "~/actions/auth";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+//import { useRouter } from "next/navigation";
 
 export function SignupForm({
   className,
@@ -27,7 +27,7 @@ export function SignupForm({
 }: React.ComponentPropsWithoutRef<"div">) {
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const router = useRouter();
+  //const router = useRouter();
 
   const {
     register,
